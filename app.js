@@ -25,6 +25,10 @@ mongoose.connect("mongodb://localhost:27017/calendarApp", {
   useUnifiedTopology: true,
 });
 
+app.get((req, res) => {
+  res.send("I am listening");
+});
+
 // Routes
 app.use("/api/companies", companyRoutes);
 app.use("/api/methods", methodRoutes);
