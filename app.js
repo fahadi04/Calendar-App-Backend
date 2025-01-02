@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const companyRoutes = require("./routes/AdminRoutes/companyRoutes");
 const methodRoutes = require("./routes/AdminRoutes/methodRoutes");
-
+const connectDB = require("./config/db");
 const app = express();
 const port = 5000;
 
@@ -20,10 +21,7 @@ app.use(
 app.use(bodyParser.json());
 
 // Database Connection
-mongoose.connect("mongodb://localhost:27017/calendarApp", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+connectDB(process.env.MONGO_URI);
 
 app.get((req, res) => {
   res.send("I am listening");
